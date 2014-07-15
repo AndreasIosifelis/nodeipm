@@ -1,0 +1,9 @@
+Start MongoDB
+	1.Navigate to c:\
+	2.c:\mongodb\mongod.exe --dbpath c:\NodeProjects\nodeipm\database
+Start Server
+	1. Navigate to c:\NodeProjects\nodeipm
+	2.node index.js
+	
+	
+To Stop Server or MondoDB type CTRL+C
