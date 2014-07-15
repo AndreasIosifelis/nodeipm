@@ -1,8 +1,8 @@
-var mongoose = require('mongoose');
+var database = require('mongoose');
 
 module.exports = function(config){
-    mongoose.connect(config.db);
-    var db = mongoose.connection;
+    database.connect(config.db);
+    var db = database.connection;
     
     
     db.on('error', function(){

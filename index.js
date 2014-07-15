@@ -1,6 +1,6 @@
 
 var express = require('express'),		
-        mongoose = require('mongoose'),
+        database = require('mongoose'),
         fs = require('fs'),
         http = require('http'),
         config = require('./config/config'),
