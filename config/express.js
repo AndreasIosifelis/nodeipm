@@ -22,7 +22,7 @@ module.exports = function(app, config){
         
         app.use('/api', app.router);
         
-        app.use('/', express.static(__dirname + '/../client'));
+        app.use('/', express.static(__dirname + '/../desktop'));
         
     });
     

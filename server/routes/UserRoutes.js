@@ -1,5 +1,5 @@
-var theController = require('../controllers/PersonController'),
-	route = "persons";
+var theController = require('../controllers/UserController'),
+	route = "users";
 
 module.exports = function(app){
     

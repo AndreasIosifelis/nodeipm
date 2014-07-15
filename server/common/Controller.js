@@ -1,6 +1,6 @@
 var Controller = {},
 	database = require('mongoose'),
-	Person = database.model('Person'),
+	User = database.model('User'),
 	Utils = require('./Utilities');
 	
 Controller.Utils = Utils;
@@ -9,11 +9,18 @@ Controller.hasPermission = function(session){
 	return session.userInfo && session.userInfo.loggedIn;
 };
 
-Controller.gridResponse = function(success, rows){
+Controller.rowsResponse = function(success, rows, totalCount){
 	return {
-		success: success,
-		totalCount: rows.length,
+		totalCount: totalCount,
+		count: rows.length,
 		rows: rows
+	};
+};
+
+Controller.errorResponse = function(errors){
+	return {
+		success: false,
+		errors: errors
 	};
 };
 
