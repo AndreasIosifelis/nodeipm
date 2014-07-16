@@ -57,7 +57,8 @@ exports.remove = function (req, res) {
 exports.changePassword = function (req, res) {
 
 	res.send([{
-				newPassword : req.body.newPassword,
+				newPassword: req.body.newPassword,
+				newPasswordHashed : Controller.hash.generate(req.body.newPassword),
 				oldPassword : req.body.oldPassword
 			}
 		]);

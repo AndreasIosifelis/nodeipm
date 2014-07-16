@@ -1,9 +1,11 @@
 var Controller = {},
 	database = require('mongoose'),
+	hash = require('password-hash'),
 	User = database.model('User'),
 	Utils = require('./Utilities');
 	
 Controller.Utils = Utils;
+Controller.hash = hash;
 
 Controller.hasPermission = function(session){
 	return session.userInfo && session.userInfo.loggedIn;
