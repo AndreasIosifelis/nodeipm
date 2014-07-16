@@ -11,8 +11,10 @@ var express = require('express'),
         routesPath= root + '/server/routes/';
 
 //load config
-require('./config/db')(config);
+require('./config/db')(app, config);
 require('./config/express')(app, config);
+
+
 
 //load Models
 fs.readdirSync(modelsPath).forEach(function(file){

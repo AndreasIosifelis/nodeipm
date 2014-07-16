@@ -1,4 +1,4 @@
-var express = require('express'),
+var express = require('express'),	
 	MongoStore = require('connect-mongo')(express);
 	
 module.exports = function(app, config){
@@ -10,16 +10,17 @@ module.exports = function(app, config){
         app.use(express.logger('dev'));
         app.use(express.bodyParser());
         app.use(express.methodOverride());
+		
 		app.use(express.cookieParser());
 		app.use(express.session({
 			store: new MongoStore({
-				db: "ipm",
-				host: config.host,
-				port: config.dbPort
+				mongoose_connection: config.dbConnection
 			}),
 			secret: config.salt
 		}));
-        
+		
+		
+		
         app.use('/api', app.router);
         
         app.use('/', express.static(__dirname + '/../desktop'));

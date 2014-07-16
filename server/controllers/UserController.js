@@ -9,7 +9,7 @@ exports.findAll = function (req, res) {
 		if (err)
 			throw new Error(err);
 
-		res.send(records);
+		res.send({records: records, session: req.session});
 	});
 };
 
@@ -24,6 +24,10 @@ exports.findOne = function (req, res) {
 };
 
 exports.add = function (req, res) {
+
+	if(req.body.password){
+		req.body.password = Controller.hash.generate(req.body.password);
+	}
 	var document = new User(req.body);
 
 	document.save(function (err, record) {
