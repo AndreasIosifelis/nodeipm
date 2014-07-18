@@ -1,4 +1,7 @@
-var Model = {};
+var Model = {},
+	Util = require('./Utilities');
+
+Model.Util = Util;	
 
 Model.idTransform = {
 	versionKey : false,
@@ -12,6 +15,13 @@ Model.idTransform = {
 	toObject : {
 		virtuals : true
 	}
+};
+
+Model.commonFields = {
+	createdOn:String,
+	createdBy:String,
+	lastUpdatedOn:String,
+	lastUpdatedBy:String
 };
 
 

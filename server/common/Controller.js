@@ -1,7 +1,7 @@
 var Controller = {},
 	database = require('mongoose'),
 	hash = require('password-hash'),
-	User = database.model('User'),
+	Person = database.model('Person'),
 	Utils = require('./Utilities');
 	
 Controller.Utils = Utils;

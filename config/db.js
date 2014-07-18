@@ -1,12 +1,12 @@
 var database = require('mongoose');
 
 module.exports = function(app, config){
-    database.connect(config.db)
+    database.connect(config.db);
     config.dbConnection = database.connection;
 	
 	
 	config.dbConnection.on('connected', function(){
-
+		console.log('Database Connected!!');
 	});
 	
     

@@ -1,11 +1,13 @@
-var theController = require('../controllers/UserController'),
-	route = "users";
+var theController = require('../controllers/PersonController'),
+	route = "persons";
 
 module.exports = function(app){
 
     app.get('/' + route, theController.findAll);
     
     app.get('/' + route + '/:id', theController.findOne);
+	
+	app.get('/' + route + '/:id/auth', theController.authorize);
     
     app.post('/' + route, theController.add);
     
@@ -13,5 +15,6 @@ module.exports = function(app){
     
     app.delete('/' + route + '/:id', theController.remove);
     
-    app.put('/' + route + '/cp/:id', theController.changePassword);
+    app.put('/' + route + '/:id/cp', theController.changePassword);		
+
 };

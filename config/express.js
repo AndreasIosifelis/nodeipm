@@ -1,5 +1,6 @@
 var express = require('express'),	
-	MongoStore = require('connect-mongo')(express);
+	MongoStore = require('connect-mongo')(express),
+	device = require('express-device');
 	
 module.exports = function(app, config){
     
@@ -11,6 +12,8 @@ module.exports = function(app, config){
         app.use(express.bodyParser());
         app.use(express.methodOverride());
 		
+		app.use(device.capture());
+		
 		app.use(express.cookieParser());
 		app.use(express.session({
 			store: new MongoStore({
@@ -19,11 +22,11 @@ module.exports = function(app, config){
 			secret: config.salt
 		}));
 		
+        app.use('/api', app.router);        
+
+		app.use('/', express.static(__dirname + '/../desktop'));
 		
-		
-        app.use('/api', app.router);
         
-        app.use('/', express.static(__dirname + '/../desktop'));
         
     });
     

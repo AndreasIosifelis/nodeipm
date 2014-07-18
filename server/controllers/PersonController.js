@@ -1,21 +1,21 @@
 var database = require('mongoose'),
-	User = database.model('User'),
+	Person = database.model('Person'),
 	Controller = require('../common/Controller'),
-	UserController = {};
+	PersonController = {};
 
 exports.findAll = function (req, res) {
 
-	User.find({}, function (err, records) {
+	Person.find({}, function (err, records) {
 		if (err)
 			throw new Error(err);
 
-		res.send({records: records, session: req.session});
+		res.send({records: records, device: req.device});
 	});
 };
 
 exports.findOne = function (req, res) {
 
-	User.findById(req.params.id, function (err, record) {
+	Person.findById(req.params.id, function (err, record) {
 		if (err)
 			throw new Error(err);
 
@@ -28,7 +28,7 @@ exports.add = function (req, res) {
 	if(req.body.password){
 		req.body.password = Controller.hash.generate(req.body.password);
 	}
-	var document = new User(req.body);
+	var document = new Person(req.body);
 
 	document.save(function (err, record) {
 		if (err)
@@ -39,7 +39,7 @@ exports.add = function (req, res) {
 };
 
 exports.update = function (req, res) {
-	User.findByIdAndUpdate(req.params.id, {
+	Person.findByIdAndUpdate(req.params.id, {
 		$set : req.body
 	}, function (err, record) {
 		if (err)
@@ -50,7 +50,7 @@ exports.update = function (req, res) {
 };
 
 exports.remove = function (req, res) {
-	User.findByIdAndRemove(req.params.id, function (err, record) {
+	Person.findByIdAndRemove(req.params.id, function (err, record) {
 		if (err)
 			throw new Error(err);
 
@@ -69,10 +69,14 @@ exports.changePassword = function (req, res) {
 };
 
 exports.profile = function (req, res) {
-	User.findById(req.params.id, function (err, record) {
+	Person.findById(req.params.id, function (err, record) {
 		if (err)
 			throw new Error(err);
 
 		res.send(record);
 	});
+};
+
+exports.authorize = function(req, res){
+	
 };
